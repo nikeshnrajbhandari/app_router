@@ -1,6 +1,10 @@
 // import App from "@/components/carousel"
 
-export default function Home() {
+import create from "@/utils/orm/create"
+
+export default async  function Home() {
+  const result = await create()
+  console.log(result)
   return (
     <>
     
