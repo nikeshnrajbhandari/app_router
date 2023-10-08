@@ -21,7 +21,7 @@ model Category {
 model Images {
   id         BigInt   @id @default(autoincrement())
   image_url  String   @db.VarChar
-  image_type String?  @db.VarChar
+  image_type String  @db.VarChar
   product_id BigInt?
   Product    Product? @relation(fields: [product_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
@@ -29,13 +29,20 @@ model Images {
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model Product {
   id           BigInt    @id @default(autoincrement())
-  Product_Name String?   @default("100") @db.VarChar
-  Price        Float?    @db.Real
+  Product_Name String   @default("100") @db.VarChar
+  Price        Float    @db.Real
+  Discount_Price Float?
   Description  String?   @default("255") @db.VarChar
-  slug         String?   @default("100") @db.VarChar
-  category_id  BigInt?
+  slug         String   @default("100") @db.VarChar
+  category_id  BigInt
   created_at   DateTime? @db.Timestamp(6)
   updated_at   DateTime? @db.Timestamp(6)
   Images       Images[]
   Category     Category? @relation(fields: [category_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model Size{
+  id           BigInt    @id @default(autoincrement())
+  Size_Name    String    @default("100") @db.VarChar
+  amount       Int
 }

@@ -1,9 +1,10 @@
+import read from "@/utils/orm/find_product"
+
 // import App from "@/components/carousel"
 
-import create from "@/utils/orm/create"
 
 export default async  function Home() {
-  const result = await create()
+  const result = await read()
   console.log(result)
   return (
     <>
